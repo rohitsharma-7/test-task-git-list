@@ -1,5 +1,5 @@
 var _userToken = null;
 
 export const userToken = () => {
-  return 'Add Your Token Here';
+  return 'Please add your token here';
 };

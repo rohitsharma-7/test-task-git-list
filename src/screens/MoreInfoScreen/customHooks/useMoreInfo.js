@@ -6,6 +6,17 @@ export default function useHome(props) {
     const params = props.route.params;
     const [issuesData, setIssuesData] = useState([]);
     const [prData, setPrData] = useState([]);
+    const [isVisble, setIsVisible] = useState(false);
+    const [newIssueObject, setNewIssueObject] = useState({
+        title: {
+            text: '',
+            isValid: true,
+        },
+        body: {
+            text: '',
+            isValid: true,
+        },
+    })
     useEffect(() => {
         if(params && params.user && params.repoName) {
             props.getIssues({user: params.user, repoName: params.repoName});
@@ -13,6 +24,26 @@ export default function useHome(props) {
         }
     }, []);
 
+    useEffect(() => {
+        if(props.createIssueSuccess && newIssueObject.title.text.length) {
+            Alert.alert('Issue Created Successfully');
+            setNewIssueObject({
+                title: {
+                    text: '',
+                    isValid: true,
+                },
+                body: {
+                    text: '',
+                    isValid: true,
+                },
+            });
+            props.getIssues({user: params.user, repoName: params.repoName});
+            setIsVisible(false);
+        } 
+       else if (props.createIssueError) {
+            Alert.alert(props.createIssueError.message);
+        }
+    },[props.createIssueSuccess , props.createIssueError])
 
     useEffect(() => {
         if(props.issuesData && props.issuesData.length) {
@@ -27,6 +58,36 @@ export default function useHome(props) {
         }
     }, [props.issuesData, props.prData, props.issuesError, props.PRError])
 
+    const createIssue = () => {
+        let tempNewIssue = {...newIssueObject};
+        if(tempNewIssue.title.text.length === 0) {
+            tempNewIssue = {...tempNewIssue, title: {...tempNewIssue.title, isValid: false}};
+        }
+        if (tempNewIssue.body.text.length === 0) {
+            tempNewIssue = {...tempNewIssue, body: {...tempNewIssue.body, isValid: false}};
+        }
+        if (tempNewIssue.body.isValid && tempNewIssue.title.isValid) {
+            props.createAnIssue({user: params.user, repoName: params.repoName},
+                {user: params.user, repoName: params.repoName, title: tempNewIssue.title.text, body: tempNewIssue.body.text});
+        } else {
+            setNewIssueObject({...tempNewIssue});
+        }
+    }
+
+    const onModalClose = () => {
+        setIsVisible(false);
+        setNewIssueObject({
+            title: {
+                text: '',
+                isValid: true,
+            },
+            body: {
+                text: '',
+                isValid: true,
+            },
+        });
+    }
+
     const logout = () => {
         props.logout();
         resetToScreen('AuthScreen');
@@ -36,5 +97,11 @@ export default function useHome(props) {
     issuesData,
     prData,
     logout,
+    isVisble,
+    onModalClose,
+    newIssueObject,
+    setNewIssueObject,
+    createIssue,
+    setIsVisible,
   ];
 }

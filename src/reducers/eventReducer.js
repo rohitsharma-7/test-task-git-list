@@ -7,6 +7,10 @@ const initialState = {
   issuesError: null,
   pullRequestData: null, 
   pullRequestError: null,
+  subscription: null,
+  subscriptionError: null,
+  createIssueSuccess: null,
+  createIssueError: null,
 };
 
 function eventReducer(state = initialState, action) {
@@ -65,6 +69,42 @@ function eventReducer(state = initialState, action) {
               pullRequestData: null, 
               pullRequestError: JSON.parse(action.error),
             };
+            case ActionTypes.SUBSCRIPTION_REQUEST:
+              return {
+                ...state,
+                subscription: null, 
+                subscriptionError: null,
+              };
+            case ActionTypes.SUBSCRIPTION_SUCCESS:
+              return {
+                ...state,
+                subscription: action.payload,
+                subscriptionError: null,
+              };
+            case ActionTypes.SUBSCRIPTION_FAILURE:
+              return {
+                ...state,
+                subscription: null,
+                subscriptionError: JSON.parse(action.error),
+              };
+              case ActionTypes.CREATE_ISSUE_REQUEST:
+                return {
+                  ...state,
+                  createIssueSuccess: null, 
+                  createIssueError: null,
+                };
+              case ActionTypes.CREATE_ISSUE_SUCCESS:
+                return {
+                  ...state,
+                  createIssueSuccess: action.payload,
+                  createIssueError: null,
+                };
+              case ActionTypes.CREATE_ISSUE_FAILURE:
+                return {
+                  ...state,
+                  createIssueSuccess: null,
+                  createIssueError: JSON.parse(action.error),
+                };
       default:
         return {
           ...state,

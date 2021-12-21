@@ -1,7 +1,6 @@
 import React, {useState, memo} from 'react';
 import { View, TextInput} from 'react-native';
 import styles from './style';
-import * as CONST from '../../utils/Constants';
 
 const TextFieldComponent = memo(
   ({
@@ -10,8 +9,6 @@ const TextFieldComponent = memo(
     onChangeText,
     isValid,
     value,
-    onSubmitEditing,
-    blurOnSubmit,
   }) => {
     const [field, setField] = useState({
       isFocused: false,
@@ -29,16 +26,14 @@ const TextFieldComponent = memo(
           name={name}
           value={value}
           placeholder={placeholder}
-          style={styles.inputField}
+          style={name !== 'body' ? styles.inputField : styles.bodyField}
           onFocus={() => setField({...field, isFocused: true})}
           onBlur={() => {
             setField({...field, isFocused: false});
           }}
-          secureTextEntry={name === 'password' ? true : false}
+          multiline={name === 'body'}
           onChangeText={onChangeText}
           keyboardType={name === 'email' ? 'email-address' : null}
-          onSubmitEditing={onSubmitEditing}
-          blurOnSubmit={blurOnSubmit}
         />
       </View>
     );

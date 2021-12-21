@@ -17,3 +17,17 @@ export function logout() {
     type: ActionTypes.RESET_AUTH_SCREEN_DATA,
   };
 }
+
+export function addSubscribedRepo(repos) {
+  return {
+    type: ActionTypes.ADD_SUBSCRIBED_REPO_REQUEST,
+    repos,
+  };
+}
+
+export function removeSubscribedRepo(repos) {
+  return {
+    type: ActionTypes.REMOVE_SUBSCRIBED_REPO_REQUEST,
+    repos,
+  };
+}

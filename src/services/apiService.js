@@ -54,7 +54,7 @@ const throwError = (
     default:
       errorObj = JSON.stringify({
         status: 0,
-        msg: 'There was some problem connecting to Boom.TV servers, please check your internet connection and try again.',
+        msg: 'There was some problem connecting to servers, please check your internet connection and try again.',
         errorCode: ERROR_CODES.UNKNOWN,
       });
       break;
@@ -67,13 +67,11 @@ export async function CommonFetch(params, opt) {
   try {
     let URL = 
       `${Config.API_ENDPOINT}` + `${opt.url}`;
-
     let uriParams = new URLSearchParams(params).toString();
-
     const Options = {
       method: opt.method,
       URL,
-      body: uriParams,
+      body: JSON.stringify(params),
     };
 
     const ReqOptions = {

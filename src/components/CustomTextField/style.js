@@ -3,7 +3,7 @@ import scale from '../../utils/Scale';
 
 const styles = StyleSheet.create({
   container: {
-    height: scale(50),
+    minHeight: scale(50),
     backgroundColor: 'white',
     borderWidth: 1,
     paddingHorizontal: 20,
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     width: '70%',
     color: 'black',
     fontSize: 14,
+  },
+  bodyField: {
+    width: '70%',
+    color: 'black',
+    fontSize: 14,
+    height: scale(150)
   },
 });
 

@@ -2,6 +2,7 @@ import * as ActionTypes from '../actions/actionTypes';
 
 const initialState = {
   isLoading: null,
+  subscribedRepos: []
 };
 
 function commonReducer(state = initialState, action) {
@@ -16,6 +17,12 @@ function commonReducer(state = initialState, action) {
         ...state,
         isLoading: false,
       };
+    case ActionTypes.ADD_SUBSCRIBED_REPO_REQUEST:
+    case ActionTypes.REMOVE_SUBSCRIBED_REPO_REQUEST:
+      return {
+        ...state,
+        subscribedRepos: action.repos,
+      }
       default:
         return {
           ...state,

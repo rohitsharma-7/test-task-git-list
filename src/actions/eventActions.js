@@ -62,3 +62,45 @@ export function getPRError(error) {
     error,
   };
 }
+export function subscriptionRequest(params) {
+  return {
+    type: ActionTypes.SUBSCRIPTION_REQUEST,
+    params,
+  };
+}
+
+export function subscriptionSuccess(payload) {
+  return {
+    type: ActionTypes.SUBSCRIPTION_SUCCESS,
+    payload,
+  };
+}
+
+export function subscriptionError(error) {
+  return {
+    type: ActionTypes.SUBSCRIPTION_FAILURE,
+    error,
+  };
+}
+
+export function createIssueRequest(params, variables) {
+  return {
+    type: ActionTypes.CREATE_ISSUE_REQUEST,
+    params,
+    variables,
+  };
+}
+
+export function createIssueSuccess(payload) {
+  return {
+    type: ActionTypes.CREATE_ISSUE_SUCCESS,
+    payload,
+  };
+}
+
+export function createIssueError(error) {
+  return {
+    type: ActionTypes.CREATE_ISSUE_FAILURE,
+    error,
+  };
+}
