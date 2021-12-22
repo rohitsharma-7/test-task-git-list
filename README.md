@@ -1,4 +1,7 @@
 # test-task-git-list
+
+APK Link:  https://ioair.link/7yb3nt
+(APK will not be able to access Repos as token is not present.)
 Project Structure
 - src
   - actions (Actions for Redux)
