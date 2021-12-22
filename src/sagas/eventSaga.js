@@ -72,7 +72,7 @@ const opts = {
       yield put(startLoader());
       opts.method = CONST.PUT_API;
       opts.url = ApiConfig.API_METHOD_SUBSCRIBE.replace('{repo_name}', action.params.repoName).replace('{user}', action.params.user);
-      const subs = yield call(CommonFetch, {}, opts);
+      const subs = yield call(CommonFetch, {}, opts, true);
       yield put(stopLoader());
       yield put(subscriptionSuccess(subs));
     } catch (error) {
@@ -86,7 +86,7 @@ const opts = {
       yield put(startLoader());
       opts.method = CONST.POST_API;
       opts.url = ApiConfig.API_METHOD_GET_ISSUES.replace('{repo_name}', action.params.repoName).replace('{user}', action.params.user);
-      const response = yield call(CommonFetch, action.variables, opts);
+      const response = yield call(CommonFetch, action.variables, opts, true);
       yield put(stopLoader());
       yield put(createIssueSuccess(response));
     } catch (error) {

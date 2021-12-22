@@ -63,7 +63,7 @@ const throwError = (
   throw new Error(errorObj);
 };
 
-export async function CommonFetch(params, opt) {
+export async function CommonFetch(params, opt, sendOptions = false) {
   try {
     let URL = 
       `${Config.API_ENDPOINT}` + `${opt.url}`;
@@ -79,8 +79,7 @@ export async function CommonFetch(params, opt) {
       headers: {
         Authorization: `token ${AppConfig.userToken()}`,
         'Cache-Control': 'no-cache',
-        'x-mobile-request': 1,
-      },
+        'x-mobile-request': 1,},
       body: uriParams,
       timeout: CONST.API_TIMEOUT,
     };
@@ -103,7 +102,7 @@ export async function CommonFetch(params, opt) {
       return new Promise((Resolve, Reject) => {
         requestTimeoutPromise(
           ReqOptions.timeout,
-          fetch(URL, ReqOptions),
+          fetch(URL, sendOptions ? ReqOptions : {}),
           Resolve,
           Reject,
         );

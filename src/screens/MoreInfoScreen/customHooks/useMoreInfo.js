@@ -37,7 +37,9 @@ export default function useHome(props) {
                     isValid: true,
                 },
             });
-            props.getIssues({user: params.user, repoName: params.repoName});
+            setTimeout(() => {
+                props.getIssues({user: params.user, repoName: params.repoName}); 
+            }, 1000);
             setIsVisible(false);
         } 
        else if (props.createIssueError) {
