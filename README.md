@@ -2,6 +2,7 @@
 
 APK Link:  https://ioair.link/7yb3nt
 (APK will not be able to access Repos as token is not present.)
+
 Project Structure
 - src
   - actions (Actions for Redux)
@@ -43,18 +44,23 @@ Note: Add your github access token in src -> utils -> appConfig.js
 
 On Landing Page
 -> Add user name or email of the user to view repositories
+
 Screenshot: https://ibb.co/30vd17p
+
 On Home Page
 -> To search the repositories , add text in the search field and click on Find button
 -> To sort repositories by time click on sort button beside Find Button
 -> To add repositories to watchlist click on star icon
 -> To view PRs and issues of repository click on repository
 -> To Logout and view another user click on logout button
+
 Screenshot: https://ibb.co/XyZLVdJ
+
 On More Details: 
 -> View the issues on the selected repository
 -> Click on create an issue button to create an issue 
       Enter title and body of the issue and click on create
 -> To Logout and view another user click on logout button
+
 Screenshots: https://ibb.co/qN6mgTJ
              https://ibb.co/dDp61qj
