@@ -1,5 +1,5 @@
 var _userToken = null;
 
 export const userToken = () => {
-  return 'Please add your token here';
+  return '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';
 };

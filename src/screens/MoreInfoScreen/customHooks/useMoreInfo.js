@@ -27,6 +27,7 @@ export default function useHome(props) {
     useEffect(() => {
         if(props.createIssueSuccess && newIssueObject.title.text.length) {
             Alert.alert('Issue Created Successfully');
+            setIssuesData([...issuesData, props.createIssueSuccess]);
             setNewIssueObject({
                 title: {
                     text: '',
@@ -37,12 +38,9 @@ export default function useHome(props) {
                     isValid: true,
                 },
             });
-            setTimeout(() => {
-                props.getIssues({user: params.user, repoName: params.repoName}); 
-            }, 1000);
             setIsVisible(false);
         } 
-       else if (props.createIssueError) {
+       else if (props.createIssueError) { 
             Alert.alert(props.createIssueError.message);
         }
     },[props.createIssueSuccess , props.createIssueError])

@@ -10,7 +10,7 @@ container: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  blockText: {fontSize: scale(14), fontWeight: 'bold', alignSelf: 'center'},
+  blockText: {fontSize: scale(14), fontWeight: 'bold', alignSelf: 'center', color: 'black'},
   btnText: {
     fontSize: 16,
     color: 'white',

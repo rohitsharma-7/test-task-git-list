@@ -23,7 +23,6 @@ const MoreInfo = (props) => {
   ] = useMoreInfo(props);
 
   const renderScene = () => {
-
     return (<View style={styles.flexOne}>
       <Text style={styles.issueHeading}>Issues</Text>
       <FlatList

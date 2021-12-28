@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     width: '70%',
     color: 'black',
     fontSize: 14,
+    color: 'black',
   },
   bodyField: {
     width: '70%',

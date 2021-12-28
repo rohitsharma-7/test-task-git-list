@@ -1,14 +1,15 @@
 import React, {useState, memo, useEffect} from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
+import {modifyRepoArray} from '../../utils/helper';
 import styles from './style';
 
 const InputField = memo(
-  ({name, testID, data, setSearchResultData}) => {
+  ({name, testID, data, setSearchResultData, baseData, subscribedRepos}) => {
     const [seachFeildText, setSearchFieldText] = useState('');
     const [searched, setSearched] = useState(false);
 
     useEffect(() => {
-      if(seachFeildText.length === 0 && searched) {
+      if(seachFeildText.length === 0) {
         setSearched(false);
         search(seachFeildText);
       }
@@ -17,7 +18,7 @@ const InputField = memo(
     const search = (textCur) => {
       setSearchFieldText(textCur);
       let searchResultArray = [];
-      if (textCur.length && data) {
+      if (textCur.length !== 0 && data) {
           setSearched(true);
           setSearchResultData([]);
         data.map((item, index) => {
@@ -26,8 +27,8 @@ const InputField = memo(
             }
         });
         setSearchResultData([...searchResultArray]);
-      } else if(!textCur.length) {
-        setSearchResultData([...data]);
+      } else if(seachFeildText.length === 0 && searched) {
+        setSearchResultData([...modifyRepoArray(baseData, subscribedRepos)]);
       }
     };
 

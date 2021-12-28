@@ -74,6 +74,8 @@ const HomeScreen = (props) => {
       <SearchInput 
         data={reposData}
         setSearchResultData={setRepoData}
+        baseData={props.reposData}
+        subscribedRepos={props.subscribedRepos}
       />
       <TouchableOpacity onPress={() => setSorted(!sorted)} style={[styles.sortingButton, sorted ? styles.borderGreen : null]}>
         <Image source={CONST.SORT_ICON} style={[styles.sortingIcon ,sorted ? styles.tint : null]} />

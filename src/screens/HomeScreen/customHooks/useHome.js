@@ -1,16 +1,19 @@
 import {useState, useEffect} from 'react';
 import {navigateToScreen, resetToScreen} from '../../../services/navigationService';
 import {sortArray, modifyRepoArray} from '../../../utils/helper';
+import {useIsFocused} from '@react-navigation/native';
+
 export default function useHome(props) {
     const userData = props.userData;
     const [repoData, setRepoData] = useState([]);
     const [sorted, setSorted] = useState(false);
     const [subscribedId, setSubscribedId] = useState(null);
-    useEffect(() => {
+    const isFocused = useIsFocused();
+    useEffect(() => { 
         if(userData && userData?.login) {
             props.getRepos(userData?.login);
         }
-    }, []);
+    }, [isFocused]);
 
     const subscribe = (repo) => {
             setSubscribedId(repo.id);

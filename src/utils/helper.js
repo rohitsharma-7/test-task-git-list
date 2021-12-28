@@ -14,7 +14,8 @@ export const modifyRepoArray = (repoArray, watchlist) => {
     return repoArray.map(item => {
         return {
             ...item,
-            isSubscribed: watchlist.includes(item.id)
+            isSubscribed: watchlist.includes(item.id),
+            watchers: watchlist.includes(item.id) ? item.watchers+1 : item.watchers,
         }
-    })
+    });
 }
